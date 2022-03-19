@@ -12,6 +12,12 @@ function App() {
     const [movieName, setMovieName] = useState("");
     const [review, setReview] = useState("");
 
+    useEffect(() => {
+        Axios.get("http://localhost:3001/api/get").then((response) => {
+            console.log(response);
+        });
+    });
+    
     const submitReview = () => {
         Axios.post("http://localhost:3001/api/insert", {
             movieName: movieName,
