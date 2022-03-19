@@ -11,13 +11,13 @@ import Axios from 'axios';
 function App() {
     const [movieName, setMovieName] = useState("");
     const [review, setReview] = useState("");
-
+    const [moviesReviewList, setMoviesList] = useState([]);
     useEffect(() => {
         Axios.get("http://localhost:3001/api/get").then((response) => {
-            console.log(response);
+            setMoviesList(response.data);
         });
     });
-    
+
     const submitReview = () => {
         Axios.post("http://localhost:3001/api/insert", {
             movieName: movieName,
@@ -68,6 +68,9 @@ function App() {
                 </Col>
             </Row>
         </Container>
+        {moviesReviewList.map((val) => {
+            return <h1>Movie Name: {val.movieName} | Movie Review: {val.movieReview}</h1>
+        })}
     </div>
   );
 }
