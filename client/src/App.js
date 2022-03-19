@@ -21,10 +21,13 @@ function App() {
     const submitReview = () => {
         Axios.post("http://localhost:3001/api/insert", {
             movieName: movieName,
-            movieReview: review,
-        }).then(() => {
-            console.log("succes insert");
+            movieReview: review
         });
+
+        setMoviesList([
+            ...moviesReviewList,
+            { movieName: movieName, movieReview: review}
+        ]);
     }
     
   return (
@@ -61,16 +64,16 @@ function App() {
                         <Button 
                         variant="primary" 
                         onClick={submitReview}
-                        type="submit">
+                        >
                             S'inscrire
                         </Button>
                     </Form>
                 </Col>
+                {moviesReviewList.map((val) => {
+                    return <h1 key={val.id}>Movie Name: {val.movieName} | Movie Review: {val.movieReview}</h1>
+                })}
             </Row>
         </Container>
-        {moviesReviewList.map((val) => {
-            return <h1>Movie Name: {val.movieName} | Movie Review: {val.movieReview}</h1>
-        })}
     </div>
   );
 }
