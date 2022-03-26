@@ -70,7 +70,23 @@ function App() {
                     </Form>
                 </Col>
                 {moviesReviewList.map((val) => {
-                    return <h1 key={val.id}>Movie Name: {val.movieName} | Movie Review: {val.movieReview}</h1>
+                    return (
+                    <Row className="justify-content-md-center">
+                        <Col md={6}>
+                            <div className="card m-3 p-3" key={val.id}>
+                                <h1>{val.movieName}</h1>
+                                <p>{val.movieReview}</p>
+                                <div className='container-fluid p-3'>
+                                    <div className="row">
+                                        <Button variant="danger">  Delete  </Button>
+                                        <input name="update" type="text" placeholder="Update" />
+                                        <Button variant="success">Update</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    )
                 })}
             </Row>
         </Container>
