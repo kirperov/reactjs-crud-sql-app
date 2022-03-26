@@ -87,7 +87,7 @@ function App() {
                     return (
                     <Row className="justify-content-md-center">
                         <Col md={6}>
-                            <div className="card m-3 p-3" key={val.id}>
+                            <div className="card m-3 p-3">
                                 <h1>{val.movieName}</h1>
                                 <p>{val.movieReview}</p>
                                 <div className='container-fluid p-3'>
