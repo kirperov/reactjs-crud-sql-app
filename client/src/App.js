@@ -29,6 +29,10 @@ function App() {
             { movieName: movieName, movieReview: review}
         ]);
     }
+
+    const deleteReview = (movie) => {
+        Axios.delete(`http://localhost:3001/api/delete/${movie}`);
+    }
     
   return (
     <div className="App">
@@ -78,7 +82,7 @@ function App() {
                                 <p>{val.movieReview}</p>
                                 <div className='container-fluid p-3'>
                                     <div className="row">
-                                        <Button variant="danger">  Delete  </Button>
+                                        <Button onClick={() => {deleteReview(val.movieName)}} variant="danger">  Delete  </Button>
                                         <input name="update" type="text" placeholder="Update" />
                                         <Button variant="success">Update</Button>
                                     </div>
