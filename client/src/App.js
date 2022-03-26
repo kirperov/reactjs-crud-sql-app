@@ -11,6 +11,7 @@ import Axios from 'axios';
 function App() {
     const [movieName, setMovieName] = useState("");
     const [review, setReview] = useState("");
+    const [newReview, setNewReview] = useState("");
     const [moviesReviewList, setMoviesList] = useState([]);
     useEffect(() => {
         Axios.get("http://localhost:3001/api/get").then((response) => {
@@ -32,6 +33,15 @@ function App() {
 
     const deleteReview = (movie) => {
         Axios.delete(`http://localhost:3001/api/delete/${movie}`);
+    }
+
+    
+    const updateReview = (movie) => {
+        Axios.put("http://localhost:3001/api/update", {
+            movieName: movie,
+            movieReview: newReview
+        });
+  
     }
     
   return (
@@ -83,8 +93,10 @@ function App() {
                                 <div className='container-fluid p-3'>
                                     <div className="row">
                                         <Button onClick={() => {deleteReview(val.movieName)}} variant="danger">  Delete  </Button>
-                                        <input name="update" type="text" placeholder="Update" />
-                                        <Button variant="success">Update</Button>
+                                        <input name="update" type="text" placeholder="Update" onChange={(e)=> {
+                                            setNewReview(e.target.value)
+                                        }}/>
+                                        <Button variant="success" onClick={() => {updateReview(val.movieName)}}>Update</Button>
                                     </div>
                                 </div>
                             </div>
